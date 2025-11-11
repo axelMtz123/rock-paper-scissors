@@ -4,44 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rock paper scissors</title>
+    <link rel="style.css" href="style.css">
 </head>
 <body>
-    <script>
-        function getComputerChoice(){
-            const choices = ["rock", "paper", "scissors"];
-            const randomIndex = Math.floor (Math.random() * 3);
-            return choices [randomIndex];
-        }
 
-        function userChoice (){
-          let choice = prompt("pick your weapon");
-          while (choice !== "rock" && choice !== "paper" && choice !== "scissors"){
-            choice = prompt("answer is invalid")}
-          if (choice ==="rock"){
-            console.log("you picked rock")
-          } else if (choice === "paper"){
-            console.log ("you picked paper")
-          } else if (choice === "scissors"){
-            console.log("you picked scissors")
-          } else{
-            console.log (`sorry ${choice} is invalid`)
-          }
-          return (choice)
-        }
+  
+      <header>
+        <div class="navbar">
 
-        console.log(userChoice())
+        </div>
+      </header>
 
-        
-           
-        function getUserChoice (answer){
-            const choices = ["rock", "paper", "scissors"];
-            if(choices.includes(answer)){
-            console.log("correct");
-            }else{
-            console.log("no")
-          }
-        }
-            
-    </script>
+      
+  
+
+    <script src="java.js"></script>
 </body>
 </html>
