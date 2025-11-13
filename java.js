@@ -1,18 +1,18 @@
+    // ===== Get player choice =====
+
+const tvScreen = document.querySelector("#tv-screen");
+const choices = document.querySelectorAll(".choice");
+const playerScoreEl = document.querySelector(".player-score")
+const computerScoreEl = document.querySelector(".computer-score")
+
+let playerScore = 0
+let computerScore = 0
+
 // ===== Get computer choice =====
 function getComputerChoice() {
-    const choices = ["rock", "paper", "scissors"];
+    const choices = ["cat", "mouse", "dog"];
     const randomIndex = Math.floor(Math.random() * 3);
     return choices[randomIndex];
-}
-
-// ===== Get player choice =====
-function getUserChoice() {
-    let choice = prompt("Pick your weapon: rock, paper, or scissors");
-    while (!["rock", "paper", "scissors"].includes(choice)) {
-        choice = prompt("Invalid choice! Pick rock, paper, or scissors");
-    }
-    console.log(`You picked: ${choice}`);
-    return choice;
 }
 
 // ===== Decide winner for a round =====
@@ -21,9 +21,9 @@ function playRound(player, computer) {
         console.log(`Tie! Both chose ${player}`);
         return "tie";
     } else if (
-        (player === "rock" && computer === "scissors") ||
-        (player === "paper" && computer === "rock") ||
-        (player === "scissors" && computer === "paper")
+        (player === "cat" && computer === "dog") ||
+        (player === "mouse" && computer === "cat") ||
+        (player === "dog" && computer === "mouse")
     ) {
         console.log(`You win! ${player} beats ${computer}`);
         return "win";
@@ -33,25 +33,66 @@ function playRound(player, computer) {
     }
 }
 
-// ===== Score tracking =====
-let playerScore = 0;
-let computerScore = 0;
+function playVideo(player, computer) {
+    let videosrc = "";
 
-// ===== Game loop =====
-while (playerScore < 5 && computerScore < 5) {
-    const player = getUserChoice();
-    const computer = getComputerChoice();
-    const result = playRound(player, computer);
+    if (player === computer) {
+        videosrc = "videos/tie.mp4";
+    } 
+    // Player wins
+    else if (
+        (player === "cat" && computer === "dog") ||
+        (player === "dog" && computer === "mouse") ||
+        (player === "mouse" && computer === "cat")
+    ) {
+        videosrc = `videos/${player}-wins.mp4`;
+    } 
+    // Player loses
+    else {
+        videosrc = `videos/${computer}-wins.mp4`;
+    }
 
-    if (result === "win") playerScore++;
-    if (result === "lose") computerScore++;
-
-    console.log(`Score: Player ${playerScore} - Computer ${computerScore}`);
+    console.log("Video source:", videosrc); // debugging
+    tvScreen.src = videosrc;
+    tvScreen.loop = true;
+    tvScreen.controls = false;
+    tvScreen.play().catch(err => console.log(err));
 }
 
-// ===== End game =====
-if (playerScore === 5) {
-    console.log("Congratulations! You won the game!");
-} else {
-    console.log("Game over! The computer won!");
-}
+choices.forEach(button => {
+    button.addEventListener("click", () => {
+        const playerChoice = button.dataset.choice;
+        const computerChoice = getComputerChoice();
+
+        const result = playRound(playerChoice, computerChoice);
+
+        if (result === "win") {
+            playerScore++;
+            playerScoreEl.textContent = playerScore;
+        } else if (result === "lose") {
+            computerScore++;
+            computerScoreEl.textContent = computerScore;
+        } 
+
+        playVideo (playerChoice, computerChoice);
+
+        if (playerScore === 5) {
+            alert("Congratulations! You won the game!");
+            playerScore = 0;
+            computerScore = 0;
+            playerScoreEl.textContent = playerScore;
+            computerScoreEl.textContent = computerScore;
+            playVideo (playerChoice, computerChoice) = '';
+        } else if (computerScore === 5) {
+            alert("Game over! The computer won!");
+            playerScore = 0;
+            computerScore = 0;
+            playerScoreEl.textContent = playerScore;
+            computerScoreEl.textContent = computerScore;
+            playVideo (playerChoice, computerChoice) = '';
+        }
+
+
+        
+    });
+});

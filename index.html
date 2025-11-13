@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rock paper scissors</title>
-    <link rel="style.css" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -15,9 +18,55 @@
         </div>
       </header>
 
-      
+      <main>
+        
+        <h1 class="title">T o m  &  J e r r y B a t t l e</h1>
+        <div class="main-section">
+          <div class="rules-container">
+            <ul>
+              <li><p>🐱 Cat beats Dog — claws out, the dog runs away!M</p></li>
+
+              <li><p>🐶 Dog beats Mouse — one bark and the mouse bolts!</p></li>
+
+              <li><p>🐭 Mouse beats Cat — sneaky and fast, steals the cheese before Cat notices!</p></li>
+
+              <li><p>🎯 If both players pick the same, it's a tie — no one wins this round.</p></li>
+            </ul>
+          </div>
+
+          <div class="display-tv">
+            <span class="left"></span>
+            <span class="right"></span>
+          
+            <video id="tv-screen" width="450" height="400" autoplay muted></video>
+            <div class="tv-buttons"></div>
+          </div>
+        
+
+          <div class="player-choices">
+
+            <button class="btn choice" data-choice="cat"> <img src="videos/tom cat.jpg" alt="cat button choice" class="img"> <p>Cat</p></button>
+
+            <button class="btn choice" data-choice="mouse"> <img src="videos/jerry.jpg" alt="mouse button choice" class="img"> <p>Mouse</p> </button>
+
+            <button class="btn choice" data-choice="dog"> <img src="videos/bulldog.jpg" alt="dog button choice" class="img"> <p>Dog</p></button>
+
+          </div>
+      </div>
+
+        <div class="scoreboard-container">
+            <h2 class="player-score">0</h2>
+            <h2>-</h2>
+            <h2 class="computer-score">0</h2>
+        </div>
+
+      <script src="java.js"></script>
+      </main>
+
+      <footer>
+        
+      </footer>
   
 
-    <script src="java.js"></script>
 </body>
 </html>
